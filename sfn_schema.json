@@ -18,7 +18,7 @@
                 },
                 "markdown": {
                     "type": "string",
-                    "description": "Text in Synapse markdown format",
+                    "description": "Text in Synapse markdown format"
                 },
                 "subwiki": {
                     "type": "array",
@@ -183,7 +183,7 @@
                                     "type": "object",
                                     "required": [
                                         "name",
-                                        "columnType",
+                                        "columnType"
                                     ],
                                     "properties": {
                                         "name": {
@@ -191,7 +191,12 @@
                                             "description": "Name of columns"
                                         },
                                         "defaultValue": {
-                                            "type": ["string", "integer", "boolean", "number"]
+                                            "type": [
+                                                "string",
+                                                "integer",
+                                                "boolean",
+                                                "number"
+                                            ]
                                         },
                                         "maximumSize": {
                                             "type": "integer",
@@ -224,7 +229,7 @@
                                                 "enumeration",
                                                 "range"
                                             ]
-                                        }                                        }
+                                        }
                                     }
                                 }
                             }
@@ -242,7 +247,7 @@
                         "properties": {
                             "name": {
                                 "type": "string",
-                                "description": "Evaluation Queue name",
+                                "description": "Evaluation Queue name"
                             },
                             "description": {
                                 "type": "string",
@@ -250,7 +255,7 @@
                             },
                             "submissionInstructionsMessage": {
                                 "type": "string",
-                                "description": "Instructions for submitting to Evaluation Queue ",
+                                "description": "Instructions for submitting to Evaluation Queue"
                             },
                             "submissionReceiptMessage": {
                                 "type": "string",
