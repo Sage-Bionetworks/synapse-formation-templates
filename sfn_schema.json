@@ -4,6 +4,29 @@
     "title": "Synapse Formation Template",
     "description": "This schema will assist with forming Synapse projects",
     "definitions": {
+        "wiki": {
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+                "title",
+                "markdown"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Wiki title"
+                },
+                "markdown": {
+                    "type": "string",
+                    "description": "Text in Synapse markdown format",
+                },
+                "subwiki": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/wiki" },
+                    "default": []
+                }
+            }
+        },
         "annotations": {
             "type": "object",
             "desciption": "Synapse annotations"
@@ -154,193 +177,104 @@
                             },
                             "annotations": { "$ref": "#/definitions/annotations" },
                             "Column": {
-                                "$id": "#/properties/Project/properties/Table/items/properties/Column",
                                 "type": "array",
-                                "title": "The Column Schema",
+                                "description": "Synapse Table Column Types",
                                 "items": {
-                                    "$id": "#/properties/Project/properties/Table/items/properties/Column/items",
                                     "type": "object",
-                                    "title": "The Items Schema",
                                     "required": [
                                         "name",
-                                        "defaultValue",
-                                        "maximumSize",
                                         "columnType",
-                                        "facetType"
                                     ],
                                     "properties": {
                                         "name": {
-                                            "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/name",
                                             "type": "string",
-                                            "title": "The Name Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "column1"
-                                            ],
-                                            "pattern": "^(.*)$"
+                                            "description": "Name of columns"
                                         },
                                         "defaultValue": {
-                                            "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/defaultValue",
-                                            "type": "string",
-                                            "title": "The Defaultvalue Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "temp"
-                                            ],
-                                            "pattern": "^(.*)$"
+                                            "type": ["string", "integer", "boolean", "number"]
                                         },
                                         "maximumSize": {
-                                            "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/maximumSize",
                                             "type": "integer",
-                                            "title": "The Maximumsize Schema",
-                                            "default": 0,
-                                            "examples": [
-                                                1000
-                                            ]
+                                            "description": "Maximum size of a row in column"
                                         },
                                         "columnType": {
-                                            "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/columnType",
                                             "type": "string",
-                                            "title": "The Columntype Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "STRING"
-                                            ],
-                                            "pattern": "^(.*)$"
+                                            "description": "Determines type of data in a columns",
+                                            "enum": [
+                                                "STRING",
+                                                "DOUBLE",
+                                                "INTEGER",
+                                                "BOOLEAN",
+                                                "DATE",
+                                                "FILEHANDLEID",
+                                                "ENTITYID",
+                                                "LINK",
+                                                "LARGETEXT",
+                                                "USERID",
+                                                "STRING_LIST",
+                                                "INTEGER_LIST",
+                                                "BOOLEAN_LIST",
+                                                "DATE_LIST"
+                                            ]
                                         },
                                         "facetType": {
-                                            "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/facetType",
                                             "type": "string",
-                                            "title": "The Facettype Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "enumeration"
-                                            ],
-                                            "pattern": "^(.*)$"
-                                        }
+                                            "description": "Add type of facet",
+                                            "enum": [
+                                                "enumeration",
+                                                "range"
+                                            ]
+                                        }                                        }
                                     }
                                 }
                             }
                         }
                     }
                 },
-                "annotations": {
-                    "$id": "#/properties/Project/properties/annotations",
-                    "type": "object",
-                    "title": "The Annotations Schema",
-                    "required": [
-                        "key"
-                    ],
-                    "properties": {
-                        "key": {
-                            "$id": "#/properties/Project/properties/annotations/properties/key",
-                            "type": "string",
-                            "title": "The Key Schema",
-                            "default": "",
-                            "examples": [
-                                "pair"
-                            ],
-                            "pattern": "^(.*)$"
-                        }
-                    }
-                },
+                "annotations": { "$ref": "#/definitions/annotations" },
                 "Evaluation": {
-                    "$id": "#/properties/Project/properties/Evaluation",
                     "type": "array",
-                    "title": "The Evaluation Schema",
+                    "description": "Evaluation Queues",
                     "items": {
-                        "$id": "#/properties/Project/properties/Evaluation/items",
                         "type": "object",
-                        "title": "The Items Schema",
-                        "required": [
-                            "name",
-                            "description",
-                            "submissionInstructionsMessage",
-                            "submissionReceiptMessage",
-                            "quota",
-                            "permission"
-                        ],
+                        "description": "Single Evaluation Queue",
+                        "required": [ "name" ],
                         "properties": {
                             "name": {
-                                "$id": "#/properties/Project/properties/Evaluation/items/properties/name",
                                 "type": "string",
-                                "title": "The Name Schema",
-                                "default": "",
-                                "examples": [
-                                "test queue"
-                                ],
-                                "pattern": "^(.*)$"
+                                "description": "Evaluation Queue name",
                             },
                             "description": {
-                                "$id": "#/properties/Project/properties/Evaluation/items/properties/description",
                                 "type": "string",
-                                "title": "The Description Schema",
-                                "default": "",
-                                "examples": [
-                                "This is a testing queue"
-                                ],
-                                "pattern": "^(.*)$"
+                                "description": "Description of Evaluation Queue"
                             },
                             "submissionInstructionsMessage": {
-                                "$id": "#/properties/Project/properties/Evaluation/items/properties/submissionInstructionsMessage",
                                 "type": "string",
-                                "title": "The Submissioninstructionsmessage Schema",
-                                "default": "",
-                                "examples": [
-                                    "Instrucitons here"
-                                ],
-                                "pattern": "^(.*)$"
+                                "description": "Instructions for submitting to Evaluation Queue ",
                             },
                             "submissionReceiptMessage": {
-                                "$id": "#/properties/Project/properties/Evaluation/items/properties/submissionReceiptMessage",
                                 "type": "string",
-                                "title": "The Submissionreceiptmessage Schema",
-                                "default": "",
-                                "examples": [
-                                    "Successful submission!"
-                                ],
-                                "pattern": "^(.*)$"
+                                "description": "Message received after submission"
                             },
                             "quota": {
-                                "$id": "#/properties/Project/properties/Evaluation/items/properties/quota",
                                 "type": "object",
-                                "title": "The Quota Schema",
+                                "description": "The Evaluation Queue quota that controls number of submissions and when submissions can happen",
                                 "properties": {
                                     "firstRoundStart": {
-                                        "$id": "#/properties/Project/properties/Evaluation/items/properties/quota/properties/firstRoundStart",
                                         "type": "integer",
-                                        "title": "The Firstroundstart Schema",
-                                        "default": 0,
-                                        "examples": [
-                                            11111
-                                        ]
+                                        "description": "Start of the first round in unix epoch time in milliseconds"
                                     },
                                     "roundDurationMillis": {
-                                        "$id": "#/properties/Project/properties/Evaluation/items/properties/quota/properties/roundDurationMillis",
                                         "type": "integer",
-                                        "title": "The Rounddurationmillis Schema",
-                                        "default": 0,
-                                        "examples": [
-                                            1
-                                        ]
+                                        "description": "Duration of round in milliseconds"
                                     },
                                     "numberOfRounds": {
-                                        "$id": "#/properties/Project/properties/Evaluation/items/properties/quota/properties/numberOfRounds",
                                         "type": "integer",
-                                        "title": "The Numberofrounds Schema",
-                                        "default": 0,
-                                        "examples": [
-                                            2
-                                        ]
+                                        "description": "Number of rounds, must set to 1 or above for quotas to work"
                                     },
                                     "submissionLimit": {
-                                        "$id": "#/properties/Project/properties/Evaluation/items/properties/quota/properties/submissionLimit",
                                         "type": "integer",
-                                        "title": "The Submissionlimit Schema",
-                                        "default": 0,
-                                        "examples": [
-                                            5
-                                        ]
+                                        "description": "Number of submissions allowed per team"
                                     }
                                 }
                             },
@@ -348,102 +282,7 @@
                         }
                     }
                 },
-                "Wiki": {
-                    "$id": "#/properties/Project/properties/Wiki",
-                    "type": "object",
-                    "title": "The Wiki Schema",
-                    "properties": {
-                        "WikiTemplate": {
-                            "$id": "#/properties/Project/properties/Wiki/properties/WikiTemplate",
-                            "type": "string",
-                            "title": "The Wikitemplate Schema",
-                            "default": "",
-                            "examples": [
-                                "syn18058986"
-                            ],
-                            "pattern": "^(.*)$"
-                        },
-                        "structure": {
-                            "$id": "#/properties/Project/properties/Wiki/properties/structure",
-                            "type": "array",
-                            "title": "The Structure Schema",
-                            "items": {
-                                "$id": "#/properties/Project/properties/Wiki/properties/structure/items",
-                                "type": "object",
-                                "title": "The Items Schema",
-                                "required": [
-                                    "title",
-                                    "markdown",
-                                    "subwiki"
-                                ],
-                                "properties": {
-                                    "title": {
-                                        "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/title",
-                                        "type": "string",
-                                        "title": "The Title Schema",
-                                        "default": "",
-                                        "examples": [
-                                            "My wiki"
-                                        ],
-                                        "pattern": "^(.*)$"
-                                    },
-                                    "markdown": {
-                                        "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/markdown",
-                                        "type": "string",
-                                        "title": "The Markdown Schema",
-                                        "default": "",
-                                        "examples": [
-                                            "My markdown"
-                                        ],
-                                        "pattern": "^(.*)$"
-                                    },
-                                    "subwiki": {
-                                        "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki",
-                                        "type": "array",
-                                        "title": "The Subwiki Schema",
-                                        "items": {
-                                        "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki/items",
-                                        "type": "object",
-                                        "title": "The Items Schema",
-                                        "required": [
-                                            "title",
-                                            "markdown",
-                                            "subwiki"
-                                        ],
-                                        "properties": {
-                                            "title": {
-                                                "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki/items/properties/title",
-                                                "type": "string",
-                                                "title": "The Title Schema",
-                                                "default": "",
-                                                "examples": [
-                                                    "subwiki"
-                                                ],
-                                                "pattern": "^(.*)$"
-                                            },
-                                            "markdown": {
-                                            "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki/items/properties/markdown",
-                                            "type": "string",
-                                            "title": "The Markdown Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "subwiki content"
-                                            ],
-                                            "pattern": "^(.*)$"
-                                            },
-                                            "subwiki": {
-                                                "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki/items/properties/subwiki",
-                                                "type": "array",
-                                                "title": "The Subwiki Schema"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                "Wiki": { "$ref": "#/definitions/wiki" }
             }
         },
         "Team": {
