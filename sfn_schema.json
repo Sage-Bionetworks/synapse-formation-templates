@@ -1,6 +1,58 @@
 {
-    "definitions": {},
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "folder": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": { "type": "string" },
+                "Folder": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/folder" },
+                    "default": []
+                },
+                "File": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/file" },
+                    "default": []
+                }
+            }
+        },
+        "file": {
+            "type": "object",
+            "required": [
+                "name",
+                "filepath"
+            ],
+            "properties": {
+                "name": { "type": "string" },
+                "filepath": { "type": "string" }
+            }
+        },
+        "permission": {
+            "type": "object",
+            "required": [
+                "Team",
+                "acl"
+            ],
+            "properties": {
+                "Team": { "type": "string" },
+                "acl": {
+                    "type": "string",
+                    "title": "The acl Schema",
+                    "enum": [
+                        "admin",
+                        "view",
+                        "edit",
+                        "edit_and_delete",
+                        "download"
+                    ]
+                }
+            }
+        }
+    },
     "$id": "http://example.com/root.json",
     "type": "object",
     "title": "The Root Schema",
@@ -35,164 +87,12 @@
                     ],
                     "pattern": "^(.*)$"
                 },
-                "permission": {
-                    "$id": "#/properties/Project/properties/permission",
-                    "type": "object",
-                    "title": "The Permission Schema",
-                    "required": [
-                        "Team",
-                        "acl"
-                    ],
-                    "properties": {
-                        "Team": {
-                            "$id": "#/properties/Project/properties/permission/properties/Team",
-                            "type": "string",
-                            "title": "The Team Schema",
-                            "default": "",
-                            "examples": [
-                                "teamA"
-                            ],
-                            "pattern": "^(.*)$"
-                        },
-                        "acl": {
-                            "$id": "#/properties/Project/properties/permission/properties/acl",
-                            "type": "string",
-                            "title": "The acl Schema",
-                            "default": "",
-                            "examples": [
-                                "admin"
-                            ],
-                            "pattern": "^(.*)$"
-                        }
-                    }
-                },
+                "permission": { "$ref": "#/definitions/permission" },
                 "Folder": {
                     "$id": "#/properties/Project/properties/Folder",
                     "type": "array",
                     "title": "The Folder Schema",
-                    "items": {
-                        "$id": "#/properties/Project/properties/Folder/items",
-                        "type": "object",
-                        "title": "The Items Schema",
-                        "required": [
-                            "name"
-                        ],
-                        "properties": {
-                            "name": {
-                                "$id": "#/properties/Project/properties/Folder/items/properties/name",
-                                "type": "string",
-                                "title": "The Name Schema",
-                                "default": "",
-                                "examples": [
-                                    "folderA"
-                                ],
-                                "pattern": "^(.*)$"
-                            },
-                            "annotations": {
-                                "$id": "#/properties/Project/properties/Folder/items/properties/annotations",
-                                "type": "object",
-                                "title": "The Annotations Schema",
-                                "additionalProperties": true
-                            },
-                            "permission": {
-                                "$id": "#/properties/Project/properties/permission",
-                                "type": "object",
-                                "title": "The Permission Schema",
-                                "required": [
-                                    "Team",
-                                    "acl"
-                                ],
-                                "properties": {
-                                    "Team": {
-                                        "$id": "#/properties/Project/properties/permission/properties/Team",
-                                        "type": "string",
-                                        "title": "The Team Schema",
-                                        "default": "",
-                                        "examples": [
-                                            "teamA"
-                                        ],
-                                        "pattern": "^(.*)$"
-                                    },
-                                    "acl": {
-                                        "$id": "#/properties/Project/properties/permission/properties/acl",
-                                        "type": "string",
-                                        "title": "The acl Schema",
-                                        "default": "",
-                                        "examples": [
-                                            "admin"
-                                        ],
-                                        "pattern": "^(.*)$"
-                                    }
-                                }
-                            },
-                            "Folder": {
-                                "$id": "#/properties/Project/properties/Folder/items/properties/Folder",
-                                "type": "array",
-                                "title": "The Folder Schema",
-                                "items": {
-                                    "$id": "#/properties/Project/properties/Folder/items/properties/Folder/items",
-                                    "type": "object",
-                                    "title": "The Items Schema",
-                                    "required": [
-                                        "name"
-                                    ],
-                                    "properties": {
-                                        "name": {
-                                            "$id": "#/properties/Project/properties/Folder/items/properties/Folder/items/properties/name",
-                                            "type": "string",
-                                            "title": "The Name Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "innerfolderB"
-                                            ],
-                                            "pattern": "^(.*)$"
-                                        },
-                                        "Folder": {
-                                            "$id": "#/properties/Project/properties/Folder/items/properties/Folder/items/properties/Folder",
-                                            "type": "array",
-                                            "title": "The Folder Schema"
-                                        }
-                                    }
-                                }
-                            },
-                            "File": {
-                                "$id": "#/properties/Project/properties/Folder/items/properties/File",
-                                "type": "array",
-                                "title": "The File Schema",
-                                "items": {
-                                    "$id": "#/properties/Project/properties/Folder/items/properties/File/items",
-                                    "type": "object",
-                                    "title": "The Items Schema",
-                                    "required": [
-                                        "name",
-                                        "filepath"
-                                    ],
-                                    "properties": {
-                                        "name": {
-                                            "$id": "#/properties/Project/properties/Folder/items/properties/File/items/properties/name",
-                                            "type": "string",
-                                            "title": "The Name Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "entityname"
-                                            ],
-                                            "pattern": "^(.*)$"
-                                        },
-                                        "filepath": {
-                                            "$id": "#/properties/Project/properties/Folder/items/properties/File/items/properties/filepath",
-                                            "type": "string",
-                                            "title": "The Filepath Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "/test/my/path"
-                                            ],
-                                            "pattern": "^(.*)$"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    "items": { "$ref": "#/definitions/folder" }
                 },
                 "Forum": {
                     "$id": "#/properties/Project/properties/Forum",
@@ -212,8 +112,7 @@
                                 "title": "The Thread Schema",
                                 "required": [
                                     "title",
-                                    "messageMarkdown",
-                                    "Reply"
+                                    "messageMarkdown"
                                 ],
                                 "properties": {
                                     "title": {
@@ -542,37 +441,7 @@
                                     }
                                 }
                             },
-                            "permission": {
-                                "$id": "#/properties/Project/properties/permission",
-                                "type": "object",
-                                "title": "The Permission Schema",
-                                "required": [
-                                    "Team",
-                                    "acl"
-                                ],
-                                "properties": {
-                                    "Team": {
-                                        "$id": "#/properties/Project/properties/permission/properties/Team",
-                                        "type": "string",
-                                        "title": "The Team Schema",
-                                        "default": "",
-                                        "examples": [
-                                            "teamA"
-                                        ],
-                                        "pattern": "^(.*)$"
-                                    },
-                                    "acl": {
-                                        "$id": "#/properties/Project/properties/permission/properties/acl",
-                                        "type": "string",
-                                        "title": "The acl Schema",
-                                        "default": "",
-                                        "examples": [
-                                            "admin"
-                                        ],
-                                        "pattern": "^(.*)$"
-                                    }
-                                }
-                            }
+                            "permission": { "$ref": "#/definitions/permission" }
                         }
                     }
                 },
