@@ -6,8 +6,28 @@
             "teamB": "view"
         },
         "Folder": [
-            ["dir", "folder", "file"],
-            ["dir", "folder", "file"]
+            {
+                "name": "folderA",
+                "annotations": {
+                    "test": "me"
+                },
+                "permission": {
+                    "teamA": "admin",
+                    "teamB": "view"
+                },
+                "Folder": [
+                    {
+                        "name": "innerfolderB",
+                        "Folder": []
+                    }
+                ],
+                "File": [
+                    {
+                        "name": "entityname",
+                        "filepath": "/test/my/path"
+                    }
+                ]
+            }
         ],
         "Forum": [
             {
