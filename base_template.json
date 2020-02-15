@@ -48,7 +48,6 @@
                     "messageMarkdown": "#my markdown",
                     "Reply": [
                         {
-                            "title": "Example reply",
                             "messageMarkdown": "response"
                         }
                     ]

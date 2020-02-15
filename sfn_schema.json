@@ -1,6 +1,13 @@
 {
+    "$id": "http://example.com/root.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Synapse Formation Template",
+    "description": "This schema will assist with forming Synapse projects",
     "definitions": {
+        "annotations": {
+            "type": "object",
+            "desciption": "Synapse annotations"
+        },
         "folder": {
             "type": "object",
             "required": [
@@ -53,18 +60,14 @@
             }
         }
     },
-    "$id": "http://example.com/root.json",
     "type": "object",
-    "title": "The Root Schema",
     "required": [
         "Project",
         "Team"
     ],
     "properties": {
         "Project": {
-            "$id": "#/properties/Project",
             "type": "object",
-            "title": "The Project Schema",
             "required": [
                 "name",
                 "permission",
@@ -77,96 +80,42 @@
                 "Wiki"
             ],
             "properties": {
-                "name": {
-                    "$id": "#/properties/Project/properties/name",
-                    "type": "string",
-                    "title": "The Name Schema",
-                    "default": "",
-                    "examples": [
-                        "testproject"
-                    ],
-                    "pattern": "^(.*)$"
-                },
+                "name": { "type": "string" },
                 "permission": { "$ref": "#/definitions/permission" },
                 "Folder": {
-                    "$id": "#/properties/Project/properties/Folder",
                     "type": "array",
-                    "title": "The Folder Schema",
                     "items": { "$ref": "#/definitions/folder" }
                 },
                 "Forum": {
-                    "$id": "#/properties/Project/properties/Forum",
                     "type": "array",
-                    "title": "The Forum Schema",
                     "items": {
-                        "$id": "#/properties/Project/properties/Forum/items",
                         "type": "object",
-                        "title": "The Items Schema",
-                        "required": [
-                            "Thread"
-                        ],
+                        "required": [ "Thread" ],
                         "properties": {
                             "Thread": {
-                                "$id": "#/properties/Project/properties/Forum/items/properties/Thread",
                                 "type": "object",
-                                "title": "The Thread Schema",
                                 "required": [
                                     "title",
                                     "messageMarkdown"
                                 ],
                                 "properties": {
-                                    "title": {
-                                        "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/title",
+                                    "title": { 
                                         "type": "string",
-                                        "title": "The Title Schema",
-                                        "default": "",
-                                        "examples": [
-                                            "Example thread"
-                                        ],
-                                        "pattern": "^(.*)$"
+                                        "description": "Title of thread"
                                     },
                                     "messageMarkdown": {
-                                        "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/messageMarkdown",
                                         "type": "string",
-                                        "title": "The Messagemarkdown Schema",
-                                        "default": "",
-                                        "examples": [
-                                            "#my markdown"
-                                        ],
-                                        "pattern": "^(.*)$"
+                                        "description": "Thread text in Synapse markdown format"
                                     },
                                     "Reply": {
-                                        "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/Reply",
                                         "type": "array",
-                                        "title": "The Reply Schema",
                                         "items": {
-                                            "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/Reply/items",
                                             "type": "object",
-                                            "title": "The Items Schema",
-                                            "required": [
-                                                "title",
-                                                "messageMarkdown"
-                                            ],
+                                            "required": [ "messageMarkdown" ],
                                             "properties": {
-                                                "title": {
-                                                    "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/Reply/items/properties/title",
-                                                    "type": "string",
-                                                    "title": "The Title Schema",
-                                                    "default": "",
-                                                    "examples": [
-                                                        "Example reply"
-                                                    ],
-                                                    "pattern": "^(.*)$"
-                                                },
                                                 "messageMarkdown": {
-                                                    "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/Reply/items/properties/messageMarkdown",
                                                     "type": "string",
-                                                    "title": "The Messagemarkdown Schema",
-                                                    "default": "",
-                                                    "examples": [
-                                                        "response"
-                                                    ],
-                                                    "pattern": "^(.*)$"
+                                                    "description": "Reponse to thread in Synapse markdown format"
                                                 }
                                             }
                                         }
@@ -177,79 +126,33 @@
                     }
                 },
                 "Challenge": {
-                    "$id": "#/properties/Project/properties/Challenge",
                     "type": "object",
-                    "title": "The Challenge Schema",
+                    "description": "Creation of Synapse Challenge object",
                     "required": [
                         "Team"
                     ],
                     "properties": {
                         "Team": {
-                            "$id": "#/properties/Project/properties/Challenge/properties/Team",
                             "type": "string",
-                            "title": "The Team Schema",
-                            "default": "",
-                            "examples": [
-                                "teamA"
-                            ],
-                            "pattern": "^(.*)$"
+                            "description": "Synapse Team name"
                         }
                     }
                 },
                 "Table": {
-                    "$id": "#/properties/Project/properties/Table",
                     "type": "array",
-                    "title": "The Table Schema",
+                    "description": "Create Synapse Tables",
                     "items": {
-                        "$id": "#/properties/Project/properties/Table/items",
                         "type": "object",
-                        "title": "The Items Schema",
                         "required": [
                             "name",
-                            "description",
                             "Column"
                         ],
                         "properties": {
                             "name": {
-                                "$id": "#/properties/Project/properties/Table/items/properties/name",
                                 "type": "string",
-                                "title": "The Name Schema",
-                                "default": "",
-                                "examples": [
-                                    "tableA"
-                                ],
-                                "pattern": "^(.*)$"
+                                "description": "Synapse Table name"
                             },
-                            "description": {
-                                "$id": "#/properties/Project/properties/Table/items/properties/description",
-                                "type": "string",
-                                "title": "The Description Schema",
-                                "default": "",
-                                "examples": [
-                                    "user description of schema"
-                                ],
-                                "pattern": "^(.*)$"
-                            },
-                            "annotations": {
-                                "$id": "#/properties/Project/properties/Table/items/properties/annotations",
-                                "type": "object",
-                                "title": "The Annotations Schema",
-                                "required": [
-                                    "key"
-                                ],
-                                "properties": {
-                                    "key": {
-                                        "$id": "#/properties/Project/properties/Table/items/properties/annotations/properties/key",
-                                        "type": "string",
-                                        "title": "The Key Schema",
-                                        "default": "",
-                                        "examples": [
-                                            "pair"
-                                        ],
-                                        "pattern": "^(.*)$"
-                                    }
-                                }
-                            },
+                            "annotations": { "$ref": "#/definitions/annotations" },
                             "Column": {
                                 "$id": "#/properties/Project/properties/Table/items/properties/Column",
                                 "type": "array",
