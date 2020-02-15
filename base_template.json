@@ -1,12 +1,10 @@
 {
     "Project": {
         "name": "testproject",
-        "permission": [
-            {
-                "teamA": "admin",
-                "teamB": "view"
-            }
-        ],
+        "permission": {
+            "teamA": "admin",
+            "teamB": "view"
+        },
         "Folder": [
             ["dir", "folder", "file"],
             ["dir", "folder", "file"]
@@ -66,6 +64,10 @@
                     "roundDurationMillis": 1,
                     "numberOfRounds": 2,
                     "submissionLimit": 5
+                },
+                "permission": {
+                    "teamA": "admin",
+                    "teamB": "submit"
                 }
             }
         ],
@@ -76,17 +78,18 @@
                 {
                     "title": "My wiki",
                     "markdown": "My markdown",
-                    "children": [
+                    "subwiki": [
                         {
                             "title": "subwiki",
-                            "markdown": "subwiki content"
+                            "markdown": "subwiki content",
+                            "subwiki": []
                         }
                     ]
                 },
                 {
                     "title": "Second wiki",
                     "markdown": "Content",
-                    "children": []
+                    "subwiki": []
                 }
             ]
         }
