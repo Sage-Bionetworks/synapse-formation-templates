@@ -3,14 +3,22 @@
         "name": "testproject",
         "permission": [
             {
-                "teamA": "admin"
+                "teamA": "admin",
+                "teamB": "view"
             }
         ],
         "Folder": [
             ["dir", "folder", "file"],
             ["dir", "folder", "file"]
         ],
-        "Forum": {},
+        "Forum": [
+            {
+                "Thread": {
+                    "title": "Example thread",
+                    "messageMarkdown": "#my markdown"
+                }
+            }
+        ],
         "Challenge": {
             "Team": "teamA"
         },
@@ -18,14 +26,53 @@
         "annotations": {
             "key": "pair"
         },
-        "Evaluation": {},
-        "Wiki": {}
+        "Evaluation": [
+            {
+                "name": "test queue",
+                "description": "This is a testing queue",
+                "submissionInstructionsMessage": "Instrucitons here",
+                "submissionReceiptMessage": "Successful submission!",
+                "quota": {
+                    "firstRoundStart": 11111,
+                    "roundDurationMillis": 1,
+                    "numberOfRounds": 2,
+                    "submissionLimit": 5
+                }
+            }
+        ],
+        "Wiki": {
+            "_comment": "Use one of these below keys",
+            "WikiTemplate": "syn18058986",
+            "structure": [
+                {
+                    "title": "My wiki",
+                    "markdown": "My markdown",
+                    "children": [
+                        {
+                            "title": "subwiki",
+                            "markdown": "subwiki content"
+                        }
+                    ]
+                },
+                {
+                    "title": "Second wiki",
+                    "markdown": "Content",
+                    "children": []
+                }
+            ]
+        }
     },
     "Team": [
         {
             "name": "teamA",
             "description": "This is a testing team",
             "canPublicJoin": true,
+            "invitees": ["thomas.yu"]
+        },
+        {
+            "name": "teamB",
+            "description": "This is another team",
+            "canPublicJoin": false,
             "invitees": ["thomas.yu"]
         }
     ]
