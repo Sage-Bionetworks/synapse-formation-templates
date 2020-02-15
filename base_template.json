@@ -1,20 +1,32 @@
 {
     "Project": {
         "name": "testproject",
-        "permission": {
-            "teamA": "admin",
-            "teamB": "view"
-        },
+        "permission": [
+            {
+                "Team": "teamA",
+                "acl": "admin"
+            },
+            {
+                "Team": "teamB",
+                "acl": "view"
+            }
+        ],
         "Folder": [
             {
                 "name": "folderA",
                 "annotations": {
                     "test": "me"
                 },
-                "permission": {
-                    "teamA": "admin",
-                    "teamB": "view"
-                },
+                "permission": [
+                    {
+                        "Team": "teamA",
+                        "acl": "admin"
+                    },
+                    {
+                        "Team": "teamB",
+                        "acl": "view"
+                    }
+                ],
                 "Folder": [
                     {
                         "name": "innerfolderB",
@@ -85,10 +97,16 @@
                     "numberOfRounds": 2,
                     "submissionLimit": 5
                 },
-                "permission": {
-                    "teamA": "admin",
-                    "teamB": "submit"
-                }
+                "permission": [
+                    {
+                        "Team": "teamA",
+                        "acl": "admin"
+                    },
+                    {
+                        "Team": "teamB",
+                        "acl": "view"
+                    }
+                ]
             }
         ],
         "Wiki": {
