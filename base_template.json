@@ -28,7 +28,30 @@
         "Challenge": {
             "Team": "teamA"
         },
-        "Table": {},
+        "Table": [
+            {
+                "name": "tableA",
+                "description": "user description of schema",
+                "annotations": {
+                    "key": "pair"
+                },
+                "Column": [
+                    {
+                        "name": "column1",
+                        "defaultValue": "temp",
+                        "maximumSize": 1000,
+                        "columnType": "STRING",
+                        "facetType": "enumeration"
+                    },
+                    {
+                        "name": "column2",
+                        "defaultValue": 2,
+                        "columnType": "INTEGER",
+                        "facetType": "range"
+                    }
+                ]
+            }
+        ],
         "annotations": {
             "key": "pair"
         },
