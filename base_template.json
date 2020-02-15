@@ -1,0 +1,21 @@
+{
+    "Project": {
+        "name": "testproject",
+        "Folder": [
+            ["dir", "folder", "file"],
+            ["dir", "folder", "file"]
+        ],
+        "Forum": {},
+        "Challenge": {"Team": "teamA"},
+        "Table": {},
+        "annotations": {
+            "key": "pair"
+        },
+        "Evaluation": {},
+        "Wiki": {}
+    },
+    "Team": {
+        "name": "teamA",
+        "invitees": ["thomas.yu"]
+    }
+}
