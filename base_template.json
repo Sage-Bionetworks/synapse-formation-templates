@@ -136,13 +136,13 @@
             "name": "teamA",
             "description": "This is a testing team",
             "canPublicJoin": true,
-            "invitees": ["thomas.yu"]
+            "invitees": [ 3333 ]
         },
         {
             "name": "teamB",
             "description": "This is another team",
             "canPublicJoin": false,
-            "invitees": ["thomas.yu"]
+            "invitees": [ 2222 ]
         }
     ]
 }

@@ -47,6 +47,11 @@
                     "type": "array",
                     "items": { "$ref": "#/definitions/file" },
                     "default": []
+                },
+                "permission": {
+                    "type": "array",
+                    "description": "Synapse Folder permissions",
+                    "items": { "$ref": "#/definitions/permission" }
                 }
             }
         },
@@ -58,7 +63,12 @@
             ],
             "properties": {
                 "name": { "type": "string" },
-                "filepath": { "type": "string" }
+                "filepath": { "type": "string" },
+                "permission": {
+                    "type": "array",
+                    "description": "Synapse File permissions",
+                    "items": { "$ref": "#/definitions/permission" }
+                }
             }
         },
         "permission": {
@@ -91,20 +101,14 @@
     "properties": {
         "Project": {
             "type": "object",
-            "required": [
-                "name",
-                "permission",
-                "Folder",
-                "Forum",
-                "Challenge",
-                "Table",
-                "annotations",
-                "Evaluation",
-                "Wiki"
-            ],
+            "required": [ "name" ],
             "properties": {
                 "name": { "type": "string" },
-                "permission": { "$ref": "#/definitions/permission" },
+                "permission": {
+                    "type": "array",
+                    "description": "Synapse Project permissions",
+                    "items": { "$ref": "#/definitions/permission" }
+                },
                 "Folder": {
                     "type": "array",
                     "items": { "$ref": "#/definitions/folder" }
@@ -283,11 +287,28 @@
                                     }
                                 }
                             },
-                            "permission": { "$ref": "#/definitions/permission" }
+                            "permission": {
+                                "type": "array",
+                                "description": "Evaluation queue permissions",
+                                "items": {"$ref": "#/definitions/permission" }
+                            }
                         }
                     }
                 },
-                "Wiki": { "$ref": "#/definitions/wiki" }
+                "Wiki": {
+                    "type": "object",
+                    "properties": {
+                        "structure": {
+                            "type": "array",
+                            "description": "Full wiki structure",
+                            "items": { "$ref": "#/definitions/wiki" }
+                        },
+                        "WikiTemplate": {
+                            "type": "string",
+                            "description": "Wiki template from existing Synapse project"
+                        }
+                    }
+                }
             }
         },
         "Team": {
