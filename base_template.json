@@ -1,12 +1,19 @@
 {
     "Project": {
         "name": "testproject",
+        "permission": [
+            {
+                "teamA": "admin"
+            }
+        ],
         "Folder": [
             ["dir", "folder", "file"],
             ["dir", "folder", "file"]
         ],
         "Forum": {},
-        "Challenge": {"Team": "teamA"},
+        "Challenge": {
+            "Team": "teamA"
+        },
         "Table": {},
         "annotations": {
             "key": "pair"
@@ -14,8 +21,13 @@
         "Evaluation": {},
         "Wiki": {}
     },
-    "Team": {
-        "name": "teamA",
-        "invitees": ["thomas.yu"]
-    }
+    "Team": [
+        {
+            "name": "teamA",
+            "description": "This is a testing team",
+            "canPublicJoin": true,
+            "invitees": ["thomas.yu"]
+        }
+    ]
+
 }
