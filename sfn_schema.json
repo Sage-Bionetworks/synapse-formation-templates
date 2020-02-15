@@ -1,0 +1,781 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "Project",
+    "Team"
+  ],
+  "properties": {
+    "Project": {
+      "$id": "#/properties/Project",
+      "type": "object",
+      "title": "The Project Schema",
+      "required": [
+        "name",
+        "permission",
+        "Folder",
+        "Forum",
+        "Challenge",
+        "Table",
+        "annotations",
+        "Evaluation",
+        "Wiki"
+      ],
+      "properties": {
+        "name": {
+          "$id": "#/properties/Project/properties/name",
+          "type": "string",
+          "title": "The Name Schema",
+          "default": "",
+          "examples": [
+            "testproject"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "permission": {
+          "$id": "#/properties/Project/properties/permission",
+          "type": "object",
+          "title": "The Permission Schema",
+          "required": [
+            "teamA",
+            "teamB"
+          ],
+          "properties": {
+            "teamA": {
+              "$id": "#/properties/Project/properties/permission/properties/teamA",
+              "type": "string",
+              "title": "The Teama Schema",
+              "default": "",
+              "examples": [
+                "admin"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "teamB": {
+              "$id": "#/properties/Project/properties/permission/properties/teamB",
+              "type": "string",
+              "title": "The Teamb Schema",
+              "default": "",
+              "examples": [
+                "view"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "Folder": {
+          "$id": "#/properties/Project/properties/Folder",
+          "type": "array",
+          "title": "The Folder Schema",
+          "items": {
+            "$id": "#/properties/Project/properties/Folder/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "name",
+              "annotations",
+              "permission",
+              "Folder",
+              "File"
+            ],
+            "properties": {
+              "name": {
+                "$id": "#/properties/Project/properties/Folder/items/properties/name",
+                "type": "string",
+                "title": "The Name Schema",
+                "default": "",
+                "examples": [
+                  "folderA"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "annotations": {
+                "$id": "#/properties/Project/properties/Folder/items/properties/annotations",
+                "type": "object",
+                "title": "The Annotations Schema",
+                "required": [
+                  "test"
+                ],
+                "properties": {
+                  "test": {
+                    "$id": "#/properties/Project/properties/Folder/items/properties/annotations/properties/test",
+                    "type": "string",
+                    "title": "The Test Schema",
+                    "default": "",
+                    "examples": [
+                      "me"
+                    ],
+                    "pattern": "^(.*)$"
+                  }
+                }
+              },
+              "permission": {
+                "$id": "#/properties/Project/properties/Folder/items/properties/permission",
+                "type": "object",
+                "title": "The Permission Schema",
+                "required": [
+                  "teamA",
+                  "teamB"
+                ],
+                "properties": {
+                  "teamA": {
+                    "$id": "#/properties/Project/properties/Folder/items/properties/permission/properties/teamA",
+                    "type": "string",
+                    "title": "The Teama Schema",
+                    "default": "",
+                    "examples": [
+                      "admin"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "teamB": {
+                    "$id": "#/properties/Project/properties/Folder/items/properties/permission/properties/teamB",
+                    "type": "string",
+                    "title": "The Teamb Schema",
+                    "default": "",
+                    "examples": [
+                      "view"
+                    ],
+                    "pattern": "^(.*)$"
+                  }
+                }
+              },
+              "Folder": {
+                "$id": "#/properties/Project/properties/Folder/items/properties/Folder",
+                "type": "array",
+                "title": "The Folder Schema",
+                "items": {
+                  "$id": "#/properties/Project/properties/Folder/items/properties/Folder/items",
+                  "type": "object",
+                  "title": "The Items Schema",
+                  "required": [
+                    "name",
+                    "Folder"
+                  ],
+                  "properties": {
+                    "name": {
+                      "$id": "#/properties/Project/properties/Folder/items/properties/Folder/items/properties/name",
+                      "type": "string",
+                      "title": "The Name Schema",
+                      "default": "",
+                      "examples": [
+                        "innerfolderB"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "Folder": {
+                      "$id": "#/properties/Project/properties/Folder/items/properties/Folder/items/properties/Folder",
+                      "type": "array",
+                      "title": "The Folder Schema"
+                    }
+                  }
+                }
+              },
+              "File": {
+                "$id": "#/properties/Project/properties/Folder/items/properties/File",
+                "type": "array",
+                "title": "The File Schema",
+                "items": {
+                  "$id": "#/properties/Project/properties/Folder/items/properties/File/items",
+                  "type": "object",
+                  "title": "The Items Schema",
+                  "required": [
+                    "name",
+                    "filepath"
+                  ],
+                  "properties": {
+                    "name": {
+                      "$id": "#/properties/Project/properties/Folder/items/properties/File/items/properties/name",
+                      "type": "string",
+                      "title": "The Name Schema",
+                      "default": "",
+                      "examples": [
+                        "entityname"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "filepath": {
+                      "$id": "#/properties/Project/properties/Folder/items/properties/File/items/properties/filepath",
+                      "type": "string",
+                      "title": "The Filepath Schema",
+                      "default": "",
+                      "examples": [
+                        "/test/my/path"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Forum": {
+          "$id": "#/properties/Project/properties/Forum",
+          "type": "array",
+          "title": "The Forum Schema",
+          "items": {
+            "$id": "#/properties/Project/properties/Forum/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "Thread"
+            ],
+            "properties": {
+              "Thread": {
+                "$id": "#/properties/Project/properties/Forum/items/properties/Thread",
+                "type": "object",
+                "title": "The Thread Schema",
+                "required": [
+                  "title",
+                  "messageMarkdown",
+                  "Reply"
+                ],
+                "properties": {
+                  "title": {
+                    "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/title",
+                    "type": "string",
+                    "title": "The Title Schema",
+                    "default": "",
+                    "examples": [
+                      "Example thread"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "messageMarkdown": {
+                    "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/messageMarkdown",
+                    "type": "string",
+                    "title": "The Messagemarkdown Schema",
+                    "default": "",
+                    "examples": [
+                      "#my markdown"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "Reply": {
+                    "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/Reply",
+                    "type": "array",
+                    "title": "The Reply Schema",
+                    "items": {
+                      "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/Reply/items",
+                      "type": "object",
+                      "title": "The Items Schema",
+                      "required": [
+                        "title",
+                        "messageMarkdown"
+                      ],
+                      "properties": {
+                        "title": {
+                          "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/Reply/items/properties/title",
+                          "type": "string",
+                          "title": "The Title Schema",
+                          "default": "",
+                          "examples": [
+                            "Example reply"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "messageMarkdown": {
+                          "$id": "#/properties/Project/properties/Forum/items/properties/Thread/properties/Reply/items/properties/messageMarkdown",
+                          "type": "string",
+                          "title": "The Messagemarkdown Schema",
+                          "default": "",
+                          "examples": [
+                            "response"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Challenge": {
+          "$id": "#/properties/Project/properties/Challenge",
+          "type": "object",
+          "title": "The Challenge Schema",
+          "required": [
+            "Team"
+          ],
+          "properties": {
+            "Team": {
+              "$id": "#/properties/Project/properties/Challenge/properties/Team",
+              "type": "string",
+              "title": "The Team Schema",
+              "default": "",
+              "examples": [
+                "teamA"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "Table": {
+          "$id": "#/properties/Project/properties/Table",
+          "type": "array",
+          "title": "The Table Schema",
+          "items": {
+            "$id": "#/properties/Project/properties/Table/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "name",
+              "description",
+              "annotations",
+              "Column"
+            ],
+            "properties": {
+              "name": {
+                "$id": "#/properties/Project/properties/Table/items/properties/name",
+                "type": "string",
+                "title": "The Name Schema",
+                "default": "",
+                "examples": [
+                  "tableA"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "description": {
+                "$id": "#/properties/Project/properties/Table/items/properties/description",
+                "type": "string",
+                "title": "The Description Schema",
+                "default": "",
+                "examples": [
+                  "user description of schema"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "annotations": {
+                "$id": "#/properties/Project/properties/Table/items/properties/annotations",
+                "type": "object",
+                "title": "The Annotations Schema",
+                "required": [
+                  "key"
+                ],
+                "properties": {
+                  "key": {
+                    "$id": "#/properties/Project/properties/Table/items/properties/annotations/properties/key",
+                    "type": "string",
+                    "title": "The Key Schema",
+                    "default": "",
+                    "examples": [
+                      "pair"
+                    ],
+                    "pattern": "^(.*)$"
+                  }
+                }
+              },
+              "Column": {
+                "$id": "#/properties/Project/properties/Table/items/properties/Column",
+                "type": "array",
+                "title": "The Column Schema",
+                "items": {
+                  "$id": "#/properties/Project/properties/Table/items/properties/Column/items",
+                  "type": "object",
+                  "title": "The Items Schema",
+                  "required": [
+                    "name",
+                    "defaultValue",
+                    "maximumSize",
+                    "columnType",
+                    "facetType"
+                  ],
+                  "properties": {
+                    "name": {
+                      "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/name",
+                      "type": "string",
+                      "title": "The Name Schema",
+                      "default": "",
+                      "examples": [
+                        "column1"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "defaultValue": {
+                      "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/defaultValue",
+                      "type": "string",
+                      "title": "The Defaultvalue Schema",
+                      "default": "",
+                      "examples": [
+                        "temp"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "maximumSize": {
+                      "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/maximumSize",
+                      "type": "integer",
+                      "title": "The Maximumsize Schema",
+                      "default": 0,
+                      "examples": [
+                        1000
+                      ]
+                    },
+                    "columnType": {
+                      "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/columnType",
+                      "type": "string",
+                      "title": "The Columntype Schema",
+                      "default": "",
+                      "examples": [
+                        "STRING"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "facetType": {
+                      "$id": "#/properties/Project/properties/Table/items/properties/Column/items/properties/facetType",
+                      "type": "string",
+                      "title": "The Facettype Schema",
+                      "default": "",
+                      "examples": [
+                        "enumeration"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "annotations": {
+          "$id": "#/properties/Project/properties/annotations",
+          "type": "object",
+          "title": "The Annotations Schema",
+          "required": [
+            "key"
+          ],
+          "properties": {
+            "key": {
+              "$id": "#/properties/Project/properties/annotations/properties/key",
+              "type": "string",
+              "title": "The Key Schema",
+              "default": "",
+              "examples": [
+                "pair"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "Evaluation": {
+          "$id": "#/properties/Project/properties/Evaluation",
+          "type": "array",
+          "title": "The Evaluation Schema",
+          "items": {
+            "$id": "#/properties/Project/properties/Evaluation/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "name",
+              "description",
+              "submissionInstructionsMessage",
+              "submissionReceiptMessage",
+              "quota",
+              "permission"
+            ],
+            "properties": {
+              "name": {
+                "$id": "#/properties/Project/properties/Evaluation/items/properties/name",
+                "type": "string",
+                "title": "The Name Schema",
+                "default": "",
+                "examples": [
+                  "test queue"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "description": {
+                "$id": "#/properties/Project/properties/Evaluation/items/properties/description",
+                "type": "string",
+                "title": "The Description Schema",
+                "default": "",
+                "examples": [
+                  "This is a testing queue"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "submissionInstructionsMessage": {
+                "$id": "#/properties/Project/properties/Evaluation/items/properties/submissionInstructionsMessage",
+                "type": "string",
+                "title": "The Submissioninstructionsmessage Schema",
+                "default": "",
+                "examples": [
+                  "Instrucitons here"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "submissionReceiptMessage": {
+                "$id": "#/properties/Project/properties/Evaluation/items/properties/submissionReceiptMessage",
+                "type": "string",
+                "title": "The Submissionreceiptmessage Schema",
+                "default": "",
+                "examples": [
+                  "Successful submission!"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "quota": {
+                "$id": "#/properties/Project/properties/Evaluation/items/properties/quota",
+                "type": "object",
+                "title": "The Quota Schema",
+                "required": [
+                  "firstRoundStart",
+                  "roundDurationMillis",
+                  "numberOfRounds",
+                  "submissionLimit"
+                ],
+                "properties": {
+                  "firstRoundStart": {
+                    "$id": "#/properties/Project/properties/Evaluation/items/properties/quota/properties/firstRoundStart",
+                    "type": "integer",
+                    "title": "The Firstroundstart Schema",
+                    "default": 0,
+                    "examples": [
+                      11111
+                    ]
+                  },
+                  "roundDurationMillis": {
+                    "$id": "#/properties/Project/properties/Evaluation/items/properties/quota/properties/roundDurationMillis",
+                    "type": "integer",
+                    "title": "The Rounddurationmillis Schema",
+                    "default": 0,
+                    "examples": [
+                      1
+                    ]
+                  },
+                  "numberOfRounds": {
+                    "$id": "#/properties/Project/properties/Evaluation/items/properties/quota/properties/numberOfRounds",
+                    "type": "integer",
+                    "title": "The Numberofrounds Schema",
+                    "default": 0,
+                    "examples": [
+                      2
+                    ]
+                  },
+                  "submissionLimit": {
+                    "$id": "#/properties/Project/properties/Evaluation/items/properties/quota/properties/submissionLimit",
+                    "type": "integer",
+                    "title": "The Submissionlimit Schema",
+                    "default": 0,
+                    "examples": [
+                      5
+                    ]
+                  }
+                }
+              },
+              "permission": {
+                "$id": "#/properties/Project/properties/Evaluation/items/properties/permission",
+                "type": "object",
+                "title": "The Permission Schema",
+                "required": [
+                  "teamA",
+                  "teamB"
+                ],
+                "properties": {
+                  "teamA": {
+                    "$id": "#/properties/Project/properties/Evaluation/items/properties/permission/properties/teamA",
+                    "type": "string",
+                    "title": "The Teama Schema",
+                    "default": "",
+                    "examples": [
+                      "admin"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "teamB": {
+                    "$id": "#/properties/Project/properties/Evaluation/items/properties/permission/properties/teamB",
+                    "type": "string",
+                    "title": "The Teamb Schema",
+                    "default": "",
+                    "examples": [
+                      "submit"
+                    ],
+                    "pattern": "^(.*)$"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Wiki": {
+          "$id": "#/properties/Project/properties/Wiki",
+          "type": "object",
+          "title": "The Wiki Schema",
+          "required": [
+            "_comment",
+            "WikiTemplate",
+            "structure"
+          ],
+          "properties": {
+            "_comment": {
+              "$id": "#/properties/Project/properties/Wiki/properties/_comment",
+              "type": "string",
+              "title": "The _comment Schema",
+              "default": "",
+              "examples": [
+                "Use one of these below keys"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "WikiTemplate": {
+              "$id": "#/properties/Project/properties/Wiki/properties/WikiTemplate",
+              "type": "string",
+              "title": "The Wikitemplate Schema",
+              "default": "",
+              "examples": [
+                "syn18058986"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "structure": {
+              "$id": "#/properties/Project/properties/Wiki/properties/structure",
+              "type": "array",
+              "title": "The Structure Schema",
+              "items": {
+                "$id": "#/properties/Project/properties/Wiki/properties/structure/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "required": [
+                  "title",
+                  "markdown",
+                  "subwiki"
+                ],
+                "properties": {
+                  "title": {
+                    "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/title",
+                    "type": "string",
+                    "title": "The Title Schema",
+                    "default": "",
+                    "examples": [
+                      "My wiki"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "markdown": {
+                    "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/markdown",
+                    "type": "string",
+                    "title": "The Markdown Schema",
+                    "default": "",
+                    "examples": [
+                      "My markdown"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "subwiki": {
+                    "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki",
+                    "type": "array",
+                    "title": "The Subwiki Schema",
+                    "items": {
+                      "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki/items",
+                      "type": "object",
+                      "title": "The Items Schema",
+                      "required": [
+                        "title",
+                        "markdown",
+                        "subwiki"
+                      ],
+                      "properties": {
+                        "title": {
+                          "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki/items/properties/title",
+                          "type": "string",
+                          "title": "The Title Schema",
+                          "default": "",
+                          "examples": [
+                            "subwiki"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "markdown": {
+                          "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki/items/properties/markdown",
+                          "type": "string",
+                          "title": "The Markdown Schema",
+                          "default": "",
+                          "examples": [
+                            "subwiki content"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "subwiki": {
+                          "$id": "#/properties/Project/properties/Wiki/properties/structure/items/properties/subwiki/items/properties/subwiki",
+                          "type": "array",
+                          "title": "The Subwiki Schema"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Team": {
+      "$id": "#/properties/Team",
+      "type": "array",
+      "title": "The Team Schema",
+      "items": {
+        "$id": "#/properties/Team/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "name",
+          "description",
+          "canPublicJoin",
+          "invitees"
+        ],
+        "properties": {
+          "name": {
+            "$id": "#/properties/Team/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "teamA"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "description": {
+            "$id": "#/properties/Team/items/properties/description",
+            "type": "string",
+            "title": "The Description Schema",
+            "default": "",
+            "examples": [
+              "This is a testing team"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "canPublicJoin": {
+            "$id": "#/properties/Team/items/properties/canPublicJoin",
+            "type": "boolean",
+            "title": "The Canpublicjoin Schema",
+            "default": false,
+            "examples": [
+              true
+            ]
+          },
+          "invitees": {
+            "$id": "#/properties/Team/items/properties/invitees",
+            "type": "array",
+            "title": "The Invitees Schema",
+            "items": {
+              "$id": "#/properties/Team/items/properties/invitees/items",
+              "type": "string",
+              "title": "The Items Schema",
+              "default": "",
+              "examples": [
+                "thomas.yu"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        }
+      }
+    }
+  }
+}
