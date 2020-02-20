@@ -304,7 +304,8 @@
                         },
                         {
                             "type": "string",
-                            "description": "Wiki template from existing Synapse project"
+                            "description": "Wiki template from existing Synapse project",
+                            "pattern": "^syn*"
                         }
                     ]
                 }

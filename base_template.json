@@ -108,7 +108,7 @@
                 ]
             }
         ],
-        "Wiki": [
+        "_wiki_structure": [
             {
                 "title": "My wiki",
                 "markdown": "My markdown",
@@ -125,7 +125,8 @@
                 "markdown": "Content",
                 "subwiki": []
             }
-        ]
+        ],
+        "Wiki": "syn12345"
     },
     "Team": [
         {
