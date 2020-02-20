@@ -108,28 +108,24 @@
                 ]
             }
         ],
-        "Wiki": {
-            "_comment": "Use one of these below keys",
-            "WikiTemplate": "syn18058986",
-            "structure": [
-                {
-                    "title": "My wiki",
-                    "markdown": "My markdown",
-                    "subwiki": [
-                        {
-                            "title": "subwiki",
-                            "markdown": "subwiki content",
-                            "subwiki": []
-                        }
-                    ]
-                },
-                {
-                    "title": "Second wiki",
-                    "markdown": "Content",
-                    "subwiki": []
-                }
-            ]
-        }
+        "Wiki": [
+            {
+                "title": "My wiki",
+                "markdown": "My markdown",
+                "subwiki": [
+                    {
+                        "title": "subwiki",
+                        "markdown": "subwiki content",
+                        "subwiki": []
+                    }
+                ]
+            },
+            {
+                "title": "Second wiki",
+                "markdown": "Content",
+                "subwiki": []
+            }
+        ]
     },
     "Team": [
         {

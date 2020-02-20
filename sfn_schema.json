@@ -296,18 +296,17 @@
                     }
                 },
                 "Wiki": {
-                    "type": "object",
-                    "properties": {
-                        "structure": {
+                    "oneOf": [
+                        {
                             "type": "array",
                             "description": "Full wiki structure",
                             "items": { "$ref": "#/definitions/wiki" }
                         },
-                        "WikiTemplate": {
+                        {
                             "type": "string",
                             "description": "Wiki template from existing Synapse project"
                         }
-                    }
+                    ]
                 }
             }
         },
