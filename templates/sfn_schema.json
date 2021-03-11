@@ -1,0 +1,344 @@
+{
+    "$id": "http://example.com/root.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Synapse Formation Template",
+    "description": "This schema will assist with forming Synapse projects",
+    "definitions": {
+        "wiki": {
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+                "title",
+                "markdown"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Wiki title"
+                },
+                "markdown": {
+                    "type": "string",
+                    "description": "Text in Synapse markdown format"
+                },
+                "subwiki": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/wiki" },
+                    "default": []
+                }
+            }
+        },
+        "annotations": {
+            "type": "object",
+            "desciption": "Synapse annotations"
+        },
+        "folder": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": { "type": "string" },
+                "Folder": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/folder" },
+                    "default": []
+                },
+                "File": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/file" },
+                    "default": []
+                },
+                "permission": {
+                    "type": "array",
+                    "description": "Synapse Folder permissions",
+                    "items": { "$ref": "#/definitions/permission" }
+                }
+            }
+        },
+        "file": {
+            "type": "object",
+            "required": [
+                "name",
+                "filepath"
+            ],
+            "properties": {
+                "name": { "type": "string" },
+                "filepath": { "type": "string" },
+                "permission": {
+                    "type": "array",
+                    "description": "Synapse File permissions",
+                    "items": { "$ref": "#/definitions/permission" }
+                }
+            }
+        },
+        "permission": {
+            "type": "object",
+            "required": [
+                "Team",
+                "acl"
+            ],
+            "properties": {
+                "Team": { "type": "string" },
+                "acl": {
+                    "type": "string",
+                    "title": "The acl Schema",
+                    "enum": [
+                        "admin",
+                        "view",
+                        "edit",
+                        "edit_and_delete",
+                        "download"
+                    ]
+                }
+            }
+        }
+    },
+    "type": "object",
+    "required": [
+        "Project",
+        "Team"
+    ],
+    "properties": {
+        "Project": {
+            "type": "object",
+            "required": [ "name" ],
+            "properties": {
+                "name": { "type": "string" },
+                "permission": {
+                    "type": "array",
+                    "description": "Synapse Project permissions",
+                    "items": { "$ref": "#/definitions/permission" }
+                },
+                "Folder": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/folder" }
+                },
+                "Forum": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [ "Thread" ],
+                        "properties": {
+                            "Thread": {
+                                "type": "object",
+                                "required": [
+                                    "title",
+                                    "messageMarkdown"
+                                ],
+                                "properties": {
+                                    "title": { 
+                                        "type": "string",
+                                        "description": "Title of thread"
+                                    },
+                                    "messageMarkdown": {
+                                        "type": "string",
+                                        "description": "Thread text in Synapse markdown format"
+                                    },
+                                    "Reply": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "required": [ "messageMarkdown" ],
+                                            "properties": {
+                                                "messageMarkdown": {
+                                                    "type": "string",
+                                                    "description": "Reponse to thread in Synapse markdown format"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Challenge": {
+                    "type": "object",
+                    "description": "Creation of Synapse Challenge object",
+                    "required": [
+                        "Team"
+                    ],
+                    "properties": {
+                        "Team": {
+                            "type": "string",
+                            "description": "Synapse Team name"
+                        }
+                    }
+                },
+                "Table": {
+                    "type": "array",
+                    "description": "Create Synapse Tables",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "name",
+                            "Column"
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "Synapse Table name"
+                            },
+                            "annotations": { "$ref": "#/definitions/annotations" },
+                            "Column": {
+                                "type": "array",
+                                "description": "Synapse Table Column Types",
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "name",
+                                        "columnType"
+                                    ],
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Name of columns"
+                                        },
+                                        "defaultValue": {
+                                            "type": [
+                                                "string",
+                                                "integer",
+                                                "boolean",
+                                                "number"
+                                            ]
+                                        },
+                                        "maximumSize": {
+                                            "type": "integer",
+                                            "description": "Maximum size of a row in column"
+                                        },
+                                        "columnType": {
+                                            "type": "string",
+                                            "description": "Determines type of data in a columns",
+                                            "enum": [
+                                                "STRING",
+                                                "DOUBLE",
+                                                "INTEGER",
+                                                "BOOLEAN",
+                                                "DATE",
+                                                "FILEHANDLEID",
+                                                "ENTITYID",
+                                                "LINK",
+                                                "LARGETEXT",
+                                                "USERID",
+                                                "STRING_LIST",
+                                                "INTEGER_LIST",
+                                                "BOOLEAN_LIST",
+                                                "DATE_LIST"
+                                            ]
+                                        },
+                                        "facetType": {
+                                            "type": "string",
+                                            "description": "Add type of facet",
+                                            "enum": [
+                                                "enumeration",
+                                                "range"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "annotations": { "$ref": "#/definitions/annotations" },
+                "Evaluation": {
+                    "type": "array",
+                    "description": "Evaluation Queues",
+                    "items": {
+                        "type": "object",
+                        "description": "Single Evaluation Queue",
+                        "required": [ "name" ],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "Evaluation Queue name"
+                            },
+                            "description": {
+                                "type": "string",
+                                "description": "Description of Evaluation Queue"
+                            },
+                            "submissionInstructionsMessage": {
+                                "type": "string",
+                                "description": "Instructions for submitting to Evaluation Queue"
+                            },
+                            "submissionReceiptMessage": {
+                                "type": "string",
+                                "description": "Message received after submission"
+                            },
+                            "quota": {
+                                "type": "object",
+                                "description": "The Evaluation Queue quota that controls number of submissions and when submissions can happen",
+                                "properties": {
+                                    "firstRoundStart": {
+                                        "type": "integer",
+                                        "description": "Start of the first round in unix epoch time in milliseconds"
+                                    },
+                                    "roundDurationMillis": {
+                                        "type": "integer",
+                                        "description": "Duration of round in milliseconds"
+                                    },
+                                    "numberOfRounds": {
+                                        "type": "integer",
+                                        "description": "Number of rounds, must set to 1 or above for quotas to work"
+                                    },
+                                    "submissionLimit": {
+                                        "type": "integer",
+                                        "description": "Number of submissions allowed per team"
+                                    }
+                                }
+                            },
+                            "permission": {
+                                "type": "array",
+                                "description": "Evaluation queue permissions",
+                                "items": {"$ref": "#/definitions/permission" }
+                            }
+                        }
+                    }
+                },
+                "Wiki": {
+                    "oneOf": [
+                        {
+                            "type": "array",
+                            "description": "Full wiki structure",
+                            "items": { "$ref": "#/definitions/wiki" }
+                        },
+                        {
+                            "type": "string",
+                            "description": "Wiki template from existing Synapse project",
+                            "pattern": "^syn*"
+                        }
+                    ]
+                }
+            }
+        },
+        "Team": {
+            "type": "array",
+            "description": "Create Synapse teams",
+            "items": {
+                "type": "object",
+                "description": "Synapse Team",
+                "required": [ "name" ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Synapse Team name"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of Synapse team"
+                    },
+                    "canPublicJoin": {
+                        "type": "boolean",
+                        "description": "True if Synapse users can join without team manager authorization",
+                        "default": false
+                    },
+                    "invitees": {
+                        "type": "array",
+                        "description": "Synapse user ids to invite to team",
+                        "items": { "type": "integer" }
+                    }
+                }
+            }
+        }
+    }
+}
