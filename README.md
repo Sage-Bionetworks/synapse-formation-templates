@@ -1,2 +1,3 @@
 # synapse-formation-templates
-Spin up your project, portal and challenge
+
+This project hopes to house `yaml` or `json` templates that will leverage [synapseformation](https://github.com/Sage-Bionetworks/synapseformation) to create the Synapse resources required for a particular Synapse project.
