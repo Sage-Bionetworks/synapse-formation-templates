@@ -2,7 +2,7 @@ Structural_Biology_Core_Folder: &struct_bio_folder
   name: Structural_Biology_Core
   type: Folder
   next_level:
-	  - Antibody_Validation_Data
+    - Antibody_Validation_Data
     - Assay_Protocols
     - Assay_Results
     - Cell_Lines
@@ -31,16 +31,16 @@ Assay_Core_Folder: &assay_folder
     - Secondary_Screen_Result
     
 MedChem_Core_Folder: &medchem_folder
-	name: MedChem_Core
+  name: MedChem_Core
   type: Folder
   next_level:
-  	- Chemical_Probe_Data
+    - Chemical_Probe_Data
     - Chemical_Provenance
     - Lab_Notebooks
     - Structure_Activity_Relationship
 
 Gene_Folder: &gene_folder
-	- *struct_bio_folder
+  - *struct_bio_folder
   - *assay_folder
   - *medchem_folder
   - Bioinformatics Core
@@ -48,14 +48,14 @@ Gene_Folder: &gene_folder
 name: TREAD_AD_YAML
 type: Project
 next_level:
-	- name: Genes
-  	type: Folder
+  - name: Genes
+    type: Folder
     next_level:
-    	- name: MSN
-      	type: Folder
+      - name: MSN
+        type: Folder
         next_level: *gene_folder
       - name: CD44
-      	type: Folder
+        type: Folder
         next_level: *gene_folder
-	- name: Project_Activities
-  	type: Folder
+  - name: Project_Activities
+    type: Folder
