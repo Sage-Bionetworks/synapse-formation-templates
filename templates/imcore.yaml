@@ -1,0 +1,122 @@
+# Projects ----------------------------------------------------------
+
+imCORE Data Repository:
+  type: Project
+  acl:
+    # Question: Can you use the 'Ref' function in YAML keys?
+    !Ref imCORE Network: view
+    !Ref imCORE Collaborative: download
+    !Ref imCORE Admins: administrator
+  children:
+    # Subfolders
+    iDaP Working Group:
+      type: Folder
+    iDaS Working Group:
+      type: Folder
+    Workflows:
+      type: Folder
+    Data:
+      type: Folder
+      children:
+        Study-087:
+          type: Folder
+        Study-121:
+          type: Folder
+        Study-032:
+          type: Folder
+          children:
+            Study-032-Clinical:
+              type: Folder
+              children:
+                Study-032-Clinical.intake.yaml:
+                  type: File
+                  URI: file:///path/to/Study-032-Clinical.intake.yaml
+                Staging:
+                  type: Folder
+                  acl:
+                    imCORE Admins: edit & delete
+                    SarahThePI: edit
+                    LizTheGradStudent: edit
+            Study-032-WES:
+              type: Folder
+              children:
+                Study-032-WES.intake.yaml:
+                  type: File
+                  URI: file:///path/to/Study-032-WES.intake.yaml
+                Staging:
+                  type: Folder
+                  acl: 
+                    imCORE Admins: edit & delete
+                    SarahThePI: down
+                    LizTheGradStudent: edit
+                    JeffFromCoreLabA: edit
+            Study-032-RNAseq:
+              type: Folder
+              children:
+                Study-032-RNAseq.intake.yaml:
+                  type: File
+                  URI: file:///path/to/Study-032-RNAseq.intake.yaml
+                Release:
+                  type: Folder
+                  acl:
+                    imCORE Admins: edit & delete
+                  children:
+                    Level1:
+                      type: Folder
+                    Level2:
+                      type: Folder
+                    Level3:
+                      type: Folder
+                Staging:
+                  type: Folder
+                  acl: 
+                    imCORE Admins: edit & delete
+                    SarahThePI: download
+                    LizTheGradStudent: download
+    # Tables and Views
+    Staged Data Access:
+      type: Table
+      schema:
+        DateAdded: date
+        Dataset: entity
+        Access: 
+          column_type: enum
+          items:
+          - download
+          - edit
+          - edit & delete
+          - view
+        User: user
+        IsCoreLab: boolean
+    Datasets:
+      type: EntityView
+      scope: !Ref imCORE Data Repository
+      # Question: How do we handle interpolated cross-references?
+      query: SELECT * FROM ${ !Ref imCORE Data Repository } WHERE contentType = 'Dataset'
+      include:
+      - File
+      - Folder
+      add_default_columns: true
+      add_annotation_columns: false
+            
+
+# Teams -------------------------------------------------------------
+
+imCORE Network:
+  type: Team
+  members:
+  - drwilson
+  - drjones
+  - melissa
+
+imCORE Collaborative:
+  type: Team
+  members:
+  - drwilson
+  - melissa
+
+imCORE Admins:
+  type: Team
+  members:
+  - bgrande
+  - jaeddy
