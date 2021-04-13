@@ -1,0 +1,60 @@
+# These are ACL lists that correlate to actual permissions
+# on synapse
+view_acl: &view
+  - READ
+
+download_acl: &download
+  - READ
+  - DOWNLOAD
+
+edit_acl: &edit
+  - READ
+  - DOWNLOAD
+  - UPDATE
+  - CREATE
+
+edit_and_delete_acl: &edit_and_delete
+  - READ
+  - DOWNLOAD
+  - UPDATE
+  - CREATE
+  - DELETE
+
+admin_acl: &admin
+  - READ
+  - DOWNLOAD
+  - UPDATE
+  - CREATE
+  - DELETE
+  - CHANGE_SETTINGS
+  - MODERATE
+  - CHANGE_PERMISSIONS
+
+StagingProject:
+  name: Challenge Staging Example
+  type: Project
+  acl:
+    # principal_id can be both user or team id
+    - principal_id: teamA
+      access_type: *admin
+    - principal_id: teamB
+      access_type: *view
+  children:
+    - name: Infrastructure
+      type: Folder
+
+LiveProject:
+  name: Challenge Live Example
+  type: Project
+  acl:
+    - principal_id: teamA
+      access_type: *admin
+    - principal_id: teamB
+      access_type: *view
+  children:
+    - name: Data
+      type: Folder
+    - name: Logs
+      type: Folder
+    - name: Resources
+      type: Folder
