@@ -34,7 +34,7 @@ imCORE Data Repository:
                 Staging:
                   type: Folder
                   acl:
-                    imCORE Admins: edit & delete
+                    !Ref imCORE Admins: edit & delete
                     SarahThePI: edit
                     LizTheGradStudent: edit
             Study-032-WES:
@@ -46,7 +46,7 @@ imCORE Data Repository:
                 Staging:
                   type: Folder
                   acl: 
-                    imCORE Admins: edit & delete
+                    !Ref imCORE Admins: edit & delete
                     SarahThePI: down
                     LizTheGradStudent: edit
                     JeffFromCoreLabA: edit
@@ -70,7 +70,7 @@ imCORE Data Repository:
                 Staging:
                   type: Folder
                   acl: 
-                    imCORE Admins: edit & delete
+                    !Ref imCORE Admins: edit & delete
                     SarahThePI: download
                     LizTheGradStudent: download
     # Tables and Views
